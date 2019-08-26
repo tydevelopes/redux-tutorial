@@ -1,31 +1,15 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import {createStore} from 'redux';
+import NewNote from './components/NewNote';
+import Notes from './components/Notes';
+import VisibilityFilter from './components/VisibilityFilter';
 
-const counterReducer = (state = 0, action) => {
-  switch (action.type) {
-    case 'INCREMENT':
-      return state + 1;
-    case 'DECREMENT':
-      return state - 1;
-    case 'ZERO':
-      return 0;
-    default:
-      return state;
-  }
-}
-
-const store = createStore(counterReducer);
-
-function App() {
+const App = ({ store }) => {
   return (
     <div className="App">
-     <div>{store.getState()}</div>
-     <button onClick={e => store.dispatch({type: 'INCREMENT'})}>plus</button>
-     <button onClick={e => store.dispatch({type: 'DECREMENT'})}>minus</button>
-     <button onClick={e => store.dispatch({type: 'ZERO'})}>zero</button>
+      <NewNote store={store} />
+      <VisibilityFilter store={store} />
+      <Notes store={store} />
     </div>
   );
-}
-
-ReactDOM.render(<App />, document.getElementById('root'));
+};
+export default App;
