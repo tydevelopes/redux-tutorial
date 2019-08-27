@@ -3,12 +3,12 @@ import NewNote from './components/NewNote';
 import Notes from './components/Notes';
 import VisibilityFilter from './components/VisibilityFilter';
 
-const App = ({ store }) => {
+const App = () => {
   return (
     <div className="App">
-      <NewNote store={store} />
-      <VisibilityFilter store={store} />
-      <Notes store={store} />
+      <NewNote />
+      <VisibilityFilter />
+      <Notes />
     </div>
   );
 };
