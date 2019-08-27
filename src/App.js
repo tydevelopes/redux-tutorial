@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 import NewNote from './components/NewNote';
 import Notes from './components/Notes';
 import VisibilityFilter from './components/VisibilityFilter';
+import noteService from './services/notes';
+import { initializeNotes } from './reducers/noteReducer';
 
-const App = () => {
+const App = props => {
+  useEffect(() => {
+    noteService.getAll().then(notes => props.initializeNotes(notes));
+  }, [props]);
+
   return (
     <div className="App">
       <NewNote />
@@ -12,4 +19,7 @@ const App = () => {
     </div>
   );
 };
-export default App;
+export default connect(
+  null,
+  { initializeNotes }
+)(App);
